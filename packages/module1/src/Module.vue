@@ -3,7 +3,7 @@
   </div>
 </template>
 <script setup>
-import mitt from 'mitt'
+import mitt from './utils/mitt'
 import { onMounted, createApp, inject } from 'vue'
 import { createPinia, } from 'pinia';
 import * as stores from './stores/index'

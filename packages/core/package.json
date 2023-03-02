@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "license": "MIT",
     "publishConfig": {
-      "access": "public"
+        "access": "public"
     },
     "scripts": {
         "dev": "vite",
@@ -14,11 +14,10 @@
     },
     "dependencies": {
         "@vueuse/core": "^9.12.0",
-        "mitt": "^3.0.0",
+        "module1": "*",
         "pinia": "^2.0.30",
         "tailwindcss": "^3.2.6",
-        "vue": "^3.2.45",
-        "module1": "*"
+        "vue": "^3.2.45"
     },
     "main": "src/index.js",
     "devDependencies": {

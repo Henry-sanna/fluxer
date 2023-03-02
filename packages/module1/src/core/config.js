@@ -6,7 +6,7 @@ const config = {
     ],
     events: [
         {
-            id: 'core/core:state',
+            id: 'core/core:get',
             handler: (pinia, stores, payload) => {
                 const st = JSON.parse(JSON.stringify(payload))
                 setActivePinia(pinia)
@@ -24,7 +24,7 @@ export const initPublish = (stores, emitter) => {
             st,
             (state) => {
                 const schema = element.exportAll ? state[element.id] : {}
-                emitter.emit(`${config.name}/${element.id}:state`, schema);
+                emitter.emit(`${config.name}/${element.id}:get`, schema);
             },
             { deep: true }
         )

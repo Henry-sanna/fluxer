@@ -1,10 +1,11 @@
 <template>
   <div class="main">
     <div>
-      <form @submit.prevent="addItem" data-testid="add-items">
+      <div>
         <input type="text" v-model="itemName" />
-        <button>Add</button>
-      </form>
+        <button @click="addItem">Add</button>
+        <button @click="updateParent">Update</button>
+      </div>
 
       <ul data-testid="items">
         <li v-for="item in core.items" :key="item.name">
@@ -18,15 +19,22 @@
 </template>
               
 <script setup>
-import { ref } from 'vue'
+import { ref, inject } from 'vue'
 import * as stores from './stores/index';
 
 const core = stores.core()
 const itemName = ref('')
+const eventBus = inject('eventBus')
 
-function addItem() {
+const addItem = () => {
   if (!itemName.value) return
   core.addItem(itemName.value)
+  itemName.value = ''
+}
+
+const updateParent = () => {
+  if (!itemName.value) return
+  eventBus.emit('core/core:update', { rawItems: [itemName.value] })
   itemName.value = ''
 }
 

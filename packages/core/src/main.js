@@ -2,7 +2,7 @@ import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 import App from './App.vue'
 import { initPublish, initSubscribe } from './core/config'
-import mitt from 'mitt'
+import mitt from './utils/mitt'
 import * as stores from "./stores/index"
 
 const emitter = mitt()
