@@ -9,13 +9,12 @@ const config = {
     events: []
 }
 
-export const initPublish = (stores, eventBus) => {
+export const initPublish = (pinia, stores, eventBus) => {
     config.stores.forEach(element => {
         const st = stores[element.id];
         watch(
             st,
             (state) => {
-                console.log("EMITTER")
                 const schema = state.$state
                 eventBus.emit(`${config.name}/${element.id}:state`, schema);
             },
@@ -24,10 +23,10 @@ export const initPublish = (stores, eventBus) => {
     });
 }
 
-export const initSubscribe = (store, eventBus) => {
+export const initSubscribe = (pinia, stores, eventBus) => {
     config.events.forEach(event => {
         eventBus.on(event.id, (payload) => {
-            console.log("jonas")
+            event.handler(pinia, stores, payload)
         })
     });
 }

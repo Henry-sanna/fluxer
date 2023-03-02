@@ -10,6 +10,6 @@ const app = createApp(App);
 const pinia = createPinia()
 app.use(pinia)
 app.provide('eventBus', emitter)
-initPublish(stores, emitter)
-initSubscribe(stores, emitter)
+initPublish(pinia, stores, emitter)
+initSubscribe(pinia, stores, emitter)
 app.mount('#app')

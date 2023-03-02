@@ -1,4 +1,5 @@
 import { watch } from "vue"
+import { getActivePinia, setActivePinia } from "pinia"
 const config = {
     name: 'module1',
     stores: [
@@ -6,11 +7,11 @@ const config = {
     events: [
         {
             id: 'core/core:state',
-            handler: (stores, payload) => {
-                console.log("handler")
+            handler: (pinia, stores, payload) => {
                 const st = JSON.parse(JSON.stringify(payload))
-                const core = stores.core1()
-                core.$reset(st)
+                setActivePinia(pinia)
+                const core = stores.core()
+                core.$patch(st)
             }
         }
     ]
@@ -30,10 +31,10 @@ export const initPublish = (stores, emitter) => {
     });
 }
 
-export const initSubscribe = (stores, eventBus) => {
-    // config.events.forEach(event => {
-    //     eventBus.on(event.id, (payload) => {
-    //         event.handler(stores, payload)
-    //     })
-    // });
+export const initSubscribe = (pinia, stores, eventBus) => {
+    config.events.forEach(event => {
+        eventBus.on(event.id, (payload) => {
+            event.handler(pinia, stores, payload)
+        })
+    });
 }

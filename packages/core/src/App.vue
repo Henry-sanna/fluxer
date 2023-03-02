@@ -1,17 +1,19 @@
 <template>
   <div>
     <div class="main">
-      <form @submit.prevent="addItem" data-testid="add-items">
-        <input type="text" v-model="itemName" />
-        <button>Add</button>
-      </form>
+      <div>
+        <form @submit.prevent="addItem" data-testid="add-items">
+          <input type="text" v-model="itemName" />
+          <button>Add</button>
+        </form>
 
-      <ul data-testid="items">
-        <li v-for="item in core.items" :key="item.name">
-          {{ item.name }} ({{ item.amount }})
-          <button @click="core.removeItem(item.name)" type="button">X</button>
-        </li>
-      </ul>
+        <ul data-testid="items">
+          <li v-for="item in core.items" :key="item.name">
+            {{ item.name }} ({{ item.amount }})
+            <button @click="core.removeItem(item.name)" type="button">X</button>
+          </li>
+        </ul>
+      </div>
     </div>
     <Module1 :eventBus="eventBus" />
   </div>

@@ -18,11 +18,10 @@
 </template>
               
 <script setup>
-import { ref, inject } from 'vue'
-import { core1 } from './stores/core';
+import { ref } from 'vue'
+import * as stores from './stores/index';
 
-const core = core1()
-const eventBus = inject('eventBus')
+const core = stores.core()
 const itemName = ref('')
 
 function addItem() {
@@ -30,12 +29,6 @@ function addItem() {
   core.addItem(itemName.value)
   itemName.value = ''
 }
-
-eventBus.on('core/core:state', (payload) => {
-  console.log('update')
-  const st = JSON.parse(JSON.stringify(payload))
-  core.$patch(st)
-})
 
 </script>
               
