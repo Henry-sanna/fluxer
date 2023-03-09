@@ -6,32 +6,15 @@ Watch this [10-minute walkthrough](https://youtu.be/1oxFYphTS4Y) to see how new 
 
 This repo contains three packages or projects:
 
-- `header` (a library of React components)
-- `footer` (a library of React components)
-- `remixapp` (an app written using the Remix framework which depends on both `header` and `footer`)
+- `core` (a core package, login , logout)
+- `dashboard` (a package for example)
+- `accessControl` (an package for users and permissions)
 
 ```
-packages/
-    header/
-        src/
-            ...
-        package.json
-        rollup.config.json
-        jest.config.js
-
-    footer/
-        src/
-            ...
-        package.json
-        rollup.config.json
-        jest.config.js
-
-    remixapp/
-        app/
-            ...
-        public/
-        package.json
-        remix.config.js
-
-package.json
+>> npm ci
+>> npm lerna init
+>> npm lerna bootstrap
+>> cd packages/core 
+>> npx tailwindcss -i ./src/styles/base.css -o ./dist/css/base.css --watch // in every package
+>> npm run dev
 ```
