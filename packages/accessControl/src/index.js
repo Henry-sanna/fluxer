@@ -1,10 +1,13 @@
 import { HomeIcon } from '@heroicons/vue/24/outline'
-import Module from "./Module.vue";
+import Module from './Module.vue'
 export const install = () => {
     return {
-        path: "/home",
-        parent: 'root',
-        component: Module
+        path: '/home',
+        name: 'home',
+        //parent: 'root',
+        components: {
+            default: Module,
+        },
     }
 }
 
@@ -18,6 +21,6 @@ export const menu = (router) => {
             router.push({
                 path: '/home',
             })
-        }
+        },
     }
 }
